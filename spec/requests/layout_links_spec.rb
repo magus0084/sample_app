@@ -31,7 +31,7 @@ describe "LayoutLinks" do
      visit root_path
      click_link "About"
      response.should have_selector('title', :content => "About")
-     
+
      click_link "Help"
      response.should have_selector('title', :content => "Help")
 
