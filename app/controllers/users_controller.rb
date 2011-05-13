@@ -51,9 +51,17 @@ class UsersController < ApplicationController
 
 
   def destroy
-      User.find(params[:id]).destroy
-      flash[:success] = "User deleted."
-      redirect_to users_path
+      user_to_delete = User.find(params[:id])
+
+      # Implementation of getting the flash message might be a hack
+      if user_to_delete != current_user
+      	 flash[:success] = "'#{user_to_delete.name}' was deleted."
+	 user_to_delete.destroy
+      	 redirect_to users_path
+      else 
+         flash[:error] = "Admins cannot delete their own accounts."
+      	 redirect_to users_path
+      end
   end
 
 
