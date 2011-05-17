@@ -1,11 +1,13 @@
-<%= form_for @micropost do |f| %>
+<%= form_for @micropost  do |f| %>
    <%= render 'shared/error_messages', :object => f.object %>
 
    <div class="field">
-     <%= f.text_area :content %>
+     <%= f.text_area :content, :onkeyup => "UpdateCounter(this.id);" %>
    </div>
 
-   <div class="actions">
-     <%= f.submit "Submit" %>
+   <div class="actions" style="float:left;">
+     <%= f.submit "Submit"  %>
    </div>
+
+   <div id="charCounter" style="float:right">140</div>
 <% end %>

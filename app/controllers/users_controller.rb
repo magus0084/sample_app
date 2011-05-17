@@ -78,7 +78,9 @@ class UsersController < ApplicationController
 	end
 
 	def signed_out_user
-	   redirect_to(root_path) if signed_in?
-	   flash[:notice] = "Please sign out to create a new account."
+	   if signed_in?
+	      flash[:notice] = "Please sign out to create a new account."
+	      redirect_to(root_path) if signed_in?
+	   end
 	end
 end
